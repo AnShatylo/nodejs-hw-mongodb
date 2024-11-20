@@ -15,12 +15,12 @@ export const addContactSchema = Joi.object({
     'string.max': 'Phone number should have at most {#limit} symbols',
     'any.required': 'Phone number is required',
   }),
-  email: Joi.string().min(3).max(20).messages({
+  email: Joi.string().min(3).max(30).messages({
     'string.base': 'E-mail should be a string',
     'string.min': 'E-mail should have at least {#limit} symbols',
     'string.max': 'E-mail should have at most {#limit} symbols',
   }),
-  isFavorite: Joi.boolean().messages({
+  isFavourite: Joi.boolean().messages({
     'boolean.base': 'isFavorite should be true or false',
   }),
   contactType: Joi.string()
