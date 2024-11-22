@@ -41,7 +41,8 @@ contactsRouter.patch(
 
 contactsRouter.delete(
   '/contacts/:id',
-  ctrlWrapper(isValidId, contactsControllers.deleteContactController),
+  isValidId,
+  ctrlWrapper(contactsControllers.deleteContactController),
 );
 
 export default contactsRouter;
