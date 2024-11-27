@@ -15,7 +15,7 @@ import {
 } from '../constants/user.js';
 import { SMTP, TEMPLATES_DIR } from '../constants/index.js';
 import { env } from '../utils/env.js';
-import { sendEmail } from '../utils/sendMail.js';
+import { sendMail } from '../utils/sendMail.js';
 
 export const registerUser = async (payload) => {
   const { name, email, password } = payload;
@@ -122,11 +122,11 @@ export const resetToken = async (email) => {
 
   const html = template({
     name: user.name,
-    link: `${env('APP_DOMAIN')}/reset-password?token=${resetToken}`,
+    link: `${env('APP_DOMAIN')}/reset-pwd?token=${resetToken}`,
   });
 
   try {
-    await sendEmail({
+    await sendMail({
       from: env(SMTP.SMTP_FROM),
       to: email,
       subject: 'Reset your password',

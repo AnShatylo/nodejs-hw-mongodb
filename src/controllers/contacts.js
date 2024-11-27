@@ -4,11 +4,15 @@ import * as contactServices from '../services/contacts.js';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { allowedSortBy } from '../constants/contacts.js';
+import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { env } from '../utils/env.js';
 
 export const getContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query, allowedSortBy);
   const { _id: userId } = req.user;
+
   const data = await contactServices.getAllContacts({
     page,
     perPage,
@@ -43,7 +47,19 @@ export const getContactByIdController = async (req, res) => {
 
 export const addContactController = async (req, res) => {
   const { _id: userId } = req.user;
-  const contactData = { ...req.body, userId };
+  const photo = req.file;
+
+  let photoUrl = null;
+  const enableCloudinary = env('ENABLE_CLOUDINARY');
+  if (photo) {
+    if (enableCloudinary === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+
+  const contactData = { ...req.body, photo: photoUrl, userId };
 
   const data = await contactServices.addContact(contactData);
 
@@ -57,10 +73,23 @@ export const addContactController = async (req, res) => {
 export const patchContactController = async (req, res) => {
   const { id: _id } = req.params;
   const { _id: userId } = req.user;
+  const photo = req.file;
+  const enableCloudinary = env('ENABLE_CLOUDINARY');
+
+  let photoUrl = null;
+
+  if (photo) {
+    if (enableCloudinary === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
 
   const result = await contactServices.updateContact({
     _id,
     userId,
+    photo: photoUrl,
     payload: req.body,
   });
 

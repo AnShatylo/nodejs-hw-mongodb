@@ -4,6 +4,8 @@ import { logger } from './middlewares/logger.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
+import { UPLOAD_DIR } from './constants/index.js';
+
 import { env } from './utils/env.js';
 import cookieParser from 'cookie-parser';
 
@@ -22,6 +24,7 @@ export const startServer = () => {
 
   app.use('/auth', authRouter);
   app.use('/', contactsRouter);
+  app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.use(notFoundHandler);
 
