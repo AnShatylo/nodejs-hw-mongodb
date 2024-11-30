@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Contact book
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: Conveniently organise and manage your contacts with the modern "Contact book" app.
+tags:
+  - name: Contacts
+    description: Operations about contacts.
+  - name: Auth
+    description: Auth operations.
+servers:
+  - url: http://localhost:3000
+  - url: https://contacts-app-gr0m.onrender.com
+paths:
+  /contacts:
+    get:
+      $ref: ../swagger/path/contacts/get.yaml
+    post:
+      $ref: ../swagger/path/contacts/post.yaml
+  /contacts{id}:
+    get:
+      $ref: ../swagger/path/contacts/{id}/get.yaml
+    patch:
+      $ref: ../swagger/path/contacts/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/path/contacts/{id}/delete.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

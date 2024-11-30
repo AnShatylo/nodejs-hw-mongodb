@@ -5,6 +5,10 @@ import { findSession, findUser } from '../services/auth.js';
 export const authenticate = async (req, res, next) => {
   const authHeader = req.get('Authorization');
 
+  if (req.path.startsWith('/api-docs')) {
+    return next();
+  }
+
   if (!authHeader) {
     return next(createHttpError(401, 'Authorization header missing'));
   }
