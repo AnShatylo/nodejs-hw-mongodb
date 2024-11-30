@@ -59,7 +59,7 @@ responses:
               example: 201
             message:
               type: string
-              example: Successfully created a student!
+              example: Successfully created a contact!
             data:
               type: object
               $ref: ../../components/schemas/contacts.yaml
