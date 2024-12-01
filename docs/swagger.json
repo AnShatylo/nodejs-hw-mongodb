@@ -208,7 +208,7 @@
                   "photo": {
                     "description": "URL to the contact's photo",
                     "type": "string",
-                    "example": "binary"
+                    "format": "binary"
                   }
                 }
               }
@@ -375,7 +375,7 @@
                   "photo": {
                     "description": "URL to the contact's photo",
                     "type": "string",
-                    "example": "binary"
+                    "format": "binary"
                   }
                 }
               }
