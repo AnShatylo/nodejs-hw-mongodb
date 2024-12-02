@@ -551,26 +551,22 @@
           "name": {
             "description": "Contact's name",
             "type": "string",
-            "example": "Aleksandra Kors",
-            "nullable": true
+            "example": "Aleksandra Kors"
           },
           "phoneNumber": {
             "description": "Contact's phone number",
             "type": "string",
-            "example": "+38 000 000 00 00",
-            "nullable": true
+            "example": "+38 000 000 00 00"
           },
           "email": {
             "description": "Contact's email address",
             "type": "string",
-            "example": "al.kors@example.com",
-            "nullable": true
+            "example": "al.kors@example.com"
           },
           "isFavourite": {
             "description": "Indicates if the contact is marked as favourite",
             "type": "boolean",
-            "example": true,
-            "nullable": true
+            "example": true
           },
           "contactType": {
             "description": "Type of contact",
@@ -580,14 +576,12 @@
               "home",
               "personal"
             ],
-            "example": "personal",
-            "nullable": true
+            "example": "personal"
           },
           "photo": {
             "description": "URL to the contact's photo",
             "type": "string",
-            "example": "https://example.com/images/al-kors.jpg",
-            "nullable": true
+            "example": "https://example.com/images/al-kors.jpg"
           },
           "userId": {
             "description": "ID of the user who owns this contact",
