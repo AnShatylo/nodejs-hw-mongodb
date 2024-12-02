@@ -13,13 +13,14 @@ tags:
     description: Auth operations.
 servers:
   - url: https://contacts-app-gr0m.onrender.com
+  - url: http://localhost:3000
 paths:
   /contacts:
     get:
       $ref: ../swagger/path/contacts/get.yaml
     post:
       $ref: ../swagger/path/contacts/post.yaml
-  /contacts{id}:
+  /contacts/{id}:
     get:
       $ref: ../swagger/path/contacts/{id}/get.yaml
     patch:

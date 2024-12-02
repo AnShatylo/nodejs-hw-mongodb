@@ -1,10 +1,6 @@
 type: object
 required:
   - _id
-  - name
-  - phoneNumber
-  - contactType
-  - userId
 properties:
   _id:
     description: "Contact's unique identifier"
