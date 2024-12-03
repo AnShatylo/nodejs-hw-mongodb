@@ -21,7 +21,7 @@ export const addContactSchema = Joi.object({
     'string.max': 'E-mail should have at most {#limit} symbols',
   }),
   isFavourite: Joi.boolean().messages({
-    'boolean.base': 'isFavorite should be true or false',
+    'boolean.base': 'isFavourite should be true or false',
   }),
   contactType: Joi.string()
     .valid(...contactTypeList)
@@ -36,25 +36,26 @@ export const addContactSchema = Joi.object({
 });
 
 export const updateContactSchema = Joi.object({
-  name: Joi.string().min(3).max(20).messages({
+  name: Joi.string().optional().min(3).max(20).messages({
     'string.base': 'Name should be a string',
     'string.min': 'Name should have at least {#limit} symbols',
     'string.max': 'Name should have at most {#limit} symbols',
   }),
-  phoneNumber: Joi.string().min(3).max(20).messages({
+  phoneNumber: Joi.string().optional().min(3).max(20).messages({
     'string.base': 'Phone number should be a string',
     'string.min': 'Phone number should have at least {#limit} symbols',
     'string.max': 'Phone number should have at most {#limit} symbols',
   }),
-  email: Joi.string().min(3).max(30).messages({
+  email: Joi.string().optional().min(3).max(30).messages({
     'string.base': 'E-mail should be a string',
     'string.min': 'E-mail should have at least {#limit} symbols',
     'string.max': 'E-mail should have at most {#limit} symbols',
   }),
-  isFavorite: Joi.boolean().messages({
-    'boolean.base': 'isFavorite should be true or false',
+  isFavourite: Joi.boolean().optional().messages({
+    'boolean.base': 'isFavourite should be true or false',
   }),
   contactType: Joi.string()
+    .optional()
     .valid(...contactTypeList)
     .messages({
       'any.only': `Contact type must be one of the following values: ${contactTypeList.join(
