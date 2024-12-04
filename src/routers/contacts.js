@@ -4,6 +4,7 @@ import * as contactsControllers from '../controllers/contacts.js';
 import ctrlWrapper from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { authenticate } from '../middlewares/authenticate.js';
+import { bodyCleaner } from '../middlewares/bodyCleaner.js';
 import {
   addContactSchema,
   updateContactSchema,
@@ -30,6 +31,7 @@ contactsRouter.get(
 contactsRouter.post(
   '/contacts',
   upload.single('photo'),
+  bodyCleaner,
   validateBody(addContactSchema),
   ctrlWrapper(contactsControllers.addContactController),
 );
@@ -38,6 +40,7 @@ contactsRouter.patch(
   '/contacts/:id',
   isValidId,
   upload.single('photo'),
+  bodyCleaner,
   validateBody(updateContactSchema),
   ctrlWrapper(contactsControllers.patchContactController),
 );
